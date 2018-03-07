@@ -130,7 +130,7 @@ interface WorklistFixpointSolverWithInitAndSimpleWidening<Key, ValueElement>:
         val y = funsub(n, currentElement)
         if(y != xn) {
             val out = outgoing(n)
-            val yy = if(out.any { isBackedge(n, it) }) widen(y) else y
+            val yy = if (out.any { isBackedge(n, it) }) widen(y) else y
             currentElement += n to yy
             add(out)
         }
