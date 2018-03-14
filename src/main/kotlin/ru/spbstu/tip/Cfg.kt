@@ -4,8 +4,8 @@ import ru.spbstu.tip.ast.Expr
 import ru.spbstu.tip.ast.Function
 import ru.spbstu.tip.ast.Stmt
 import ru.spbstu.tip.ast.Variable
-import ru.spbstu.tip.lattice.Dependencies
-import ru.spbstu.tip.lattice.WithDomain
+import ru.spbstu.tip.solvers.Dependencies
+import ru.spbstu.tip.solvers.WithDomain
 import java.util.concurrent.atomic.AtomicInteger
 
 class CfgFragment(

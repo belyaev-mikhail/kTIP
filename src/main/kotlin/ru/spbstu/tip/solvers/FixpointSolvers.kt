@@ -1,6 +1,9 @@
-package ru.spbstu.tip.lattice
+package ru.spbstu.tip.solvers
 
 import ru.spbstu.tip.algorithms.*
+import ru.spbstu.tip.lattice.Lattice
+import ru.spbstu.tip.lattice.MapLattice
+import ru.spbstu.tip.lattice.lub
 
 interface Dependencies<Element> {
     fun incoming(e: Element): Iterable<Element>
@@ -100,7 +103,7 @@ interface WorklistFixpointSolver<Key, ValueElement> : MapLatticeSolver<Key, Valu
 
 interface SimpleWorklistFixpointSolver<Key, ValueElement> :
         WorklistFixpointSolver<Key, ValueElement>,
-        WithDomain<Key>  {
+        WithDomain<Key> {
     override fun solve() = run {
         currentElement = bottom
         run(domain)
@@ -110,7 +113,7 @@ interface SimpleWorklistFixpointSolver<Key, ValueElement> :
 
 interface WorklistFixpointSolverWithInit<Key, ValueElement> :
         WorklistFixpointSolver<Key, ValueElement>,
-        WithInit<Key>  {
+        WithInit<Key> {
     override fun solve() = run {
         currentElement = bottom
         run(init)

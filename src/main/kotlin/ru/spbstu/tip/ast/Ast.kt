@@ -1,10 +1,16 @@
 package ru.spbstu.tip.ast
 
+import ru.spbstu.tip.utility.UidGenerator
+
 interface PrettyPrintable {
     fun pprint(): String
 }
 
-sealed class AstNode : PrettyPrintable
+internal object AstNodeUidGenerator: UidGenerator()
+
+sealed class AstNode : PrettyPrintable {
+    val uid = AstNodeUidGenerator.next()
+}
 sealed class Expr : AstNode()
 sealed class Stmt : AstNode()
 
@@ -93,5 +99,9 @@ data class Function(val name: String,
 }
 
 data class Program(val functions: List<Function>): AstNode() {
+    val mainFunction by lazy {
+        functions.find { it.name == "main" }
+    }
+
     override fun pprint() = functions.joinToString("\n") { it.pprint() }
 }

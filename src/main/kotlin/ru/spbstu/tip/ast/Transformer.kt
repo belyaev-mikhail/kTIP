@@ -84,3 +84,8 @@ interface Visitor<T> {
     fun visitProgram(program: Program): T =
             combine(program.functions.map { visitFunction(it) })
 }
+
+interface NoValueVisitor: Visitor<Unit> {
+    override fun default() = Unit
+    override fun combine(values: Collection<Unit>) = Unit
+}
